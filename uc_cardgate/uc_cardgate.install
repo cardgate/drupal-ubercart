@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ */
+function uc_cardgate_uninstall() {
+  db_delete('variable')
+    ->condition('name', 'uc_cardgate_%', 'LIKE')
+    ->execute();
+}
+
+/**
+ * Remove unused variable.
+ */
+function uc_cardgate_update_7300() {
+  variable_del('uc_cardgate_checkout_button');
+}
