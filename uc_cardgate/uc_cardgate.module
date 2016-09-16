@@ -436,7 +436,7 @@ function uc_cardgate_failure() {
 }
 
 function uc_cardgate_response() {
-    
+   
     $cardgate = new CARDGATE( variable_get( 'cardgate_site_id', '' ), variable_get( 'cardgate_prefix', '' ) );
     $cardgate->SetLogging( (uc_cardgate_canLog() && variable_get( 'cardgate_dologging', '0' ) == 1) ? true : false  );
     $cardgate->SetLoggingDirectory( drupal_get_path( 'module', 'uc_cardgate' ) . "/logs" );
@@ -447,7 +447,7 @@ function uc_cardgate_response() {
     $status = $_POST['status'];
 
     if ( $cardgate->VerifyPostback() ) {
-        
+       
         $orderID = $_POST['extra'];
         $order = uc_order_load( $orderID );
         $currentStatus = $order->order_status;

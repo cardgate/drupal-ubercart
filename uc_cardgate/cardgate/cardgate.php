@@ -15,7 +15,7 @@
 
 class CARDGATE {
 
-    var $version = "7.0.5";
+    var $version = "7.0.6";
     protected $siteID = 0;
     protected $hashKey = "";
     protected $orderID = "";
@@ -272,11 +272,13 @@ class CARDGATE {
             }
         }
 
+        $cart_total = 0;
+
         foreach ( $order->products as $sKey => $oItem ) {
 
             $price = $oItem->price * 100;
             $vat = 0;
-            $vat_amount = $oItem->price * 100;
+            $vat_amount = 0;
 
             if ( !empty( $tax ) ) {
                 if ( in_array( $oItem->type, $tax['taxed_product_types'] ) ) {
@@ -295,15 +297,16 @@ class CARDGATE {
                 'vat_amount' => round( $vat_amount, 0 ),
                 'vat_inc' => true,
                 'type' => 1 );
-        }
 
+            $cart_total += $oItem->qty * (round( $price, 0 ));
+        }
 
         foreach ( $order->line_items as $sKey => $aLineItem ) {
             switch ( $aLineItem['type'] ) {
                 case 'shipping':
                     $price = $aLineItem['amount'] * 100;
                     $vat = 0;
-                    $vat_amount = $aLineItem['amount'] * 100;
+                    $vat_amount = 0;
 
                     if ( !empty( $tax ) ) {
                         if ( in_array( 'shipping', $tax['taxed_line_items'] ) ) {
@@ -321,13 +324,15 @@ class CARDGATE {
                         'vat_amount' => round( $vat_amount, 0 ),
                         'vat_inc' => true,
                         'type' => 2 );
+                    
+                    $cart_total += round( $price, 0 );
                     break;
 
                 case 'coupon':
                     // $price = ($aLineItem['amount'] < 0 ) ? ( $aLineItem['amount'] * -1 ) * 100 : $aLineItem['amount'] * 100;
                     $price = $aLineItem['amount'] * 100;
                     $vat = 0;
-                    $vat_amount = $aLineItem['amount'] * 100;
+                    $vat_amount = 0;
 
                     if ( !empty( $tax ) ) {
                         if ( in_array( 'coupon', $tax['taxed_line_items'] ) ) {
@@ -344,16 +349,30 @@ class CARDGATE {
                         'vat' => round( $vat, 0 ),
                         'vat_amount' => round( $vat_amount, 0 ),
                         'vat_inc' => true,
-                        'type' => 2 );
+                        'type' => 4 );
+                    $cart_total += round( $price, 0 );
                     break;
             }
+        }
+
+        $amount = uc_currency_format( $order->order_total, FALSE, FALSE, '.' ) * 100;
+        $correction = $amount - $cart_total;
+        if ( $correction != 0 ) {
+            $aCartItems[] = array(
+                'quantity' => 1,
+                'sku' => 'Correction',
+                'name' => 'Total offset',
+                'price' => round( $correction, 0 ),
+                'vat' => 0,
+                'vat_amount' => 0,
+                'vat_inc' => true,
+                'type' => 4 );
         }
 
         $data = array();
         $test = variable_get( 'cardgate_mode', '' );
         $my_country = array( 'country_id' => $order->billing_country );
         $b_country = uc_get_country_data( $my_country );
-        $amount = uc_currency_format( $order->order_total, FALSE, FALSE, '.' ) * 100;
         $ref = time() . $order->order_id;
         $extra = $order->order_id;
         $hashKey = variable_get( 'cardgate_hash_key', '' );
@@ -385,7 +404,6 @@ class CARDGATE {
         if ( count( $aCartItems ) > 0 ) {
             $data['cartitems'] = json_encode( $aCartItems );
         }
-
         return $data;
     }
 

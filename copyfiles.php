@@ -36,29 +36,35 @@ $zip->close();
 }
 
     function recurse_copy( $src, $dst, $is_dir ) {
-        if ( $is_dir ) {
-            // copy directory
-            if ( is_dir( $src ) ) {
+    if ( $is_dir ) {
+        // copy directory
+        if ( is_dir( $src ) ) {
+            if ( $src != '.svn' ) {
                 $dir = opendir( $src );
                 @mkdir( $dst );
                 while ( false !== ( $file = readdir( $dir )) ) {
                     if ( ( $file != '.' ) && ( $file != '..' ) ) {
                         if ( is_dir( $src . '/' . $file ) ) {
-                            recurse_copy( $src . '/' . $file, $dst . '/' . $file , true);
+                            recurse_copy( $src . '/' . $file, $dst . '/' . $file, true );
                         } else {
-                            copy( $src . '/' . $file, $dst . '/' . $file );
+                            if ( strpos( $file, '.DS_Store' ) === false ) {
+                                copy( $src . '/' . $file, $dst . '/' . $file );
+                            }
                         }
                     }
                 }
                 closedir( $dir );
-            } else {
-                echo 'dir ' . $src . ' is not found!';
             }
         } else {
+            echo 'dir ' . $src . ' is not found!';
+        }
+    } else {
+        if ( strpos( $src, '.DS_Store' ) === false ) {
             // copy file
             copy( $src, $dst );
         }
     }
+}
 
 // make file and directory array
     function data_element( $src, $dst, $is_dir = false ) {
