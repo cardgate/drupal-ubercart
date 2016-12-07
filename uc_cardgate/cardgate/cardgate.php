@@ -46,15 +46,11 @@ class CARDGATE {
 
         $test = variable_get( 'cardgate_mode', '' ) == 'test';
 
-        if ( !empty( $_SERVER['CGP_GATEWAY_URL'] ) ) {
-            $this->testNotifyUrl = $_SERVER['CGP_GATEWAY_URL'];
-            $this->notifyUrl = $_SERVER['CGP_GATEWAY_URL'];
+
+        if ( $test ) {
+            $this->testNotifyUrl = "https://secure-staging.curopayments.net/gateway/cardgate/";
         } else {
-            if ( $test ) {
-                $this->testNotifyUrl = "https://secure-staging.curopayments.net/gateway/cardgate/";
-            } else {
-                $this->notifyUrl = "https://secure.curopayments.net/gateway/cardgate/";
-            }
+            $this->notifyUrl = "https://secure.curopayments.net/gateway/cardgate/";
         }
     }
 
@@ -238,11 +234,9 @@ class CARDGATE {
 
         $ref = $this->reference;
         $hashKey = variable_get( 'cardgate_hash_key', '' );
-        $test = variable_get( 'cardgate_mode', '' );
+        $test = $_POST['is_test'];
 
-        //die( ($test == 'test' ? 'TEST' : '') . $_POST['transactionid'] . $currency . $amount . $ref . $_POST['status'] . $hashKey);
-
-        $hash = md5( ($test == 'test' ? 'TEST' : '') . $_POST['transactionid'] . $currency . $amount . $ref . $_POST['status'] . $hashKey );
+        $hash = md5( ($test == 1 ? 'TEST' : '') . $_POST['transactionid'] . $currency . $amount . $ref . $_POST['status'] . $hashKey );
 
         if ( $hash == $_POST['hash'] ) {
             return true;
@@ -324,7 +318,7 @@ class CARDGATE {
                         'vat_amount' => round( $vat_amount, 0 ),
                         'vat_inc' => true,
                         'type' => 2 );
-                    
+
                     $cart_total += round( $price, 0 );
                     break;
 
