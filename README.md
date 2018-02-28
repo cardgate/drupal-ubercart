@@ -1,6 +1,6 @@
 ![CardGate](https://cdn.curopayments.net/thumb/200/logos/cardgate.png)
 
-# CardGate module for Drupal 7 Ubercart
+# CardGate module for Drupal 7 Ubercart 3.x
 
 [![Total Downloads](https://img.shields.io/packagist/dt/cardgate/drupal-ubercart.svg)](https://packagist.org/packages/cardgate/drupal-ubercart)
 [![Latest Version](https://img.shields.io/packagist/v/cardgate/drupal-ubercart.svg)](https://github.com/cardgate/drupal-ubercart/releases)
