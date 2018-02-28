@@ -49,7 +49,7 @@ Please visit [My Cardgate](https://my.cardgate.com/) and retrieve your Site ID a
 
 11. Go to **Connection to the website** and enter the **Callback URL**, for example:
     **http://mywebshop.com/?q=cart/cgp_response**
-(Replace **http://mywebshop.com** with the URL of your webshop)
+    (Replace **http://mywebshop.com** with the URL of your webshop)
 
 12. When you are **finished testing** make sure that you switch from **Test Mode** to **Live mode** at the **CardGate settings** and save it (**Save**).
     
