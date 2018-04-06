@@ -2,10 +2,6 @@
 
 # CardGate module for Drupal 7 Ubercart 3.x
 
-[![Total Downloads](https://img.shields.io/packagist/dt/cardgate/drupal-ubercart.svg)](https://packagist.org/packages/cardgate/drupal-ubercart)
-[![Latest Version](https://img.shields.io/packagist/v/cardgate/drupal-ubercart.svg)](https://github.com/cardgate/drupal-ubercart/releases)
-[![Build Status](https://travis-ci.org/cardgate/drupal-ubercart.svg?branch=master)](https://travis-ci.org/cardgate/drupal-ubercart)
-
 ## Support
 
 This plugin supports Ubercart version **3.x** for Drupal 7.
