@@ -9,7 +9,7 @@ This module supports Ubercart version **3.x** for Drupal 7.
 ## Preparation
 
 The usage of this module requires that you have obtained CardGate security credentials.
-Please visit [My Cardgate](https://my.cardgate.com/) and retrieve your site ID and hash key, or contact your accountmanager.
+Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID and hash key, or contact your accountmanager.
 
 ## Installation
 
@@ -25,14 +25,14 @@ Please visit [My Cardgate](https://my.cardgate.com/) and retrieve your site ID a
    
 2. Scroll to the **Ubercart – Payment** section.
 
-3. Checkmark the **Cardgate Payment Gateways module**.
+3. Checkmark the **CardGate Payment Gateways module**.
    Scroll down and click **Save configuration**.
    
 4. Go to the **admin** section of your webshop and select **Admin, Store, Payment methods**.
 
 5. Click on the **CardGate settings** link.
 
-6. Now enter the **site ID**, and the **hash Key** which you can find at **Sites** on [My Cardgate](https://my.cardgate.com/). 
+6. Now enter the **site ID**, and the **hash Key** which you can find at **Sites** on [My CardGate](https://my.cardgate.com/). 
 
 7. Enter the **default language** used by your webshop, and click **Save configuration**.
 
@@ -41,7 +41,7 @@ Please visit [My Cardgate](https://my.cardgate.com/) and retrieve your site ID a
    
 9. Click **Save configuration**.
    
-10. Go to [My Cardgate](https://my.cardgate.com/), choose **Sites** and select the appropriate site.
+10. Go to [My CardGate](https://my.cardgate.com/), choose **Sites** and select the appropriate site.
 
 11. Go to **Connection to the website** and enter the **Callback URL**, for example:
     **http://mywebshop.com/?q=cart/cgp_response**

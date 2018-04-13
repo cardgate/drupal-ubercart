@@ -30,7 +30,7 @@ of neem contact op met je accountmanager.
 2. Ga nu naar **Admin, Modules**.  
    Scroll naar het **Ubercart – Payment** gedeelte.
 
-3. Vink de **Cardgate Payment Gateways** module aan.  
+3. Vink de **CardGate Payment Gateways** module aan.  
    Scroll naar beneden en klik op **Save configuration**.  
    
 4. Ga naar het **admin** gedeelte van je webshop en selecteer **Admin, Store, Payment methods**.
