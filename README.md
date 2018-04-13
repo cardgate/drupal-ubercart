@@ -15,7 +15,7 @@ Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID a
 
 1. Download and unzip the uc_cardgate.zip file on your desktop.
 
-2. Upload the **contents** of the zip file to your **Drupal modules** folder, which you can find here: **http://mywebshop.com/htdocs/sites/all/modules/**
+2. Upload the **contents** of the zip file to your **Drupal modules** folder, which you can find here: **http://mywebshop.com/htdocs/sites/all/modules/**  
 (Replace **http://mywebshop.com** with the URL of your webshop, so the **uc_cardgate** folder will end up in the **modules folder**.)
 
 
@@ -43,7 +43,7 @@ Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID a
    
 10. Go to [My CardGate](https://my.cardgate.com/), choose **Sites** and select the appropriate site.
 
-11. Go to **Connection to the website** and enter the **Callback URL**, for example:
+11. Go to **Connection to the website** and enter the **Callback URL**, for example:  
     **http://mywebshop.com/?q=cart/cgp_response**
     (Replace **http://mywebshop.com** with the URL of your webshop.)
 
