@@ -13,7 +13,7 @@
 
 /**
  * @file
- * Gateway integration for Cardgate payment methods. 
+ * Gateway integration for CardGate payment methods. 
  */
 // Load CARDGATE API
 require_once(drupal_get_path( 'module', 'uc_cardgate' ) . '/cardgate/cardgate.php');
@@ -26,7 +26,7 @@ require_once(drupal_get_path( 'module', 'uc_cardgate' ) . '/settings/language.ph
  */
 function uc_cardgate_getPaymentMethods() {
     $pm = array(
-        array( "id" => "cgp_cardgate", "name" => "Cardgate", "descr" => "Pay using Cardgate", "img" => "cardgate.png" ),
+        array( "id" => "cgp_cardgate", "name" => "CardGate", "descr" => "Pay using CardGate", "img" => "cardgate.png" ),
         array( "id" => "cgp_creditcard", "name" => "CreditCard", "descr" => "Pay using CreditCard", "img" => "creditcard.gif"),
         array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.gif" ),
         array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "directebanking.png" ),
@@ -103,7 +103,7 @@ function uc_cardgate_menu() {
         'type' => MENU_CALLBACK,
     );
     $items['cart/cgp_test'] = array(
-        'title' => 'CARDGATE test',
+        'title' => 'CardGate test',
         'page callback' => 'uc_cardgate_test',
         'access arguments' => array( 'access content' ),
         'type' => MENU_CALLBACK,
@@ -113,7 +113,7 @@ function uc_cardgate_menu() {
 }
 
 /**
- * Form to build the submission to Cardgate.com.
+ * Form to build the submission to cardgate.com.
  */
 function uc_cardgate_form($form, &$form_state, $order) {
 
@@ -212,7 +212,7 @@ function uc_cardgate_settings_form() {
 
     $form['cardgate_module_info'] = array(
         '#type' => 'item',
-        '#title' => 'Cardgate Module information',
+        '#title' => 'CardGate Module information',
         '#description' => 'Version: ' . $cgp->version
     );
 
@@ -221,21 +221,21 @@ function uc_cardgate_settings_form() {
         '#title' => 'Mode',
         '#options' => $options['mode'],
         '#default_value' => variable_get( 'cardgate_mode', 'test' ),
-        '#description' => t( 'Select for test mode, or live mode' ),
+        '#description' => t( 'Select for Test mode, or Live mode.' ),
     );
 
     $form['cardgate_site_id'] = array(
         '#type' => 'textfield',
-        '#title' => 'Site Id',
+        '#title' => 'Site ID',
         '#default_value' => variable_get( 'cardgate_site_id', '' ),
-        '#description' => 'Enter the Site id. You can find it in the CARDGATE backoffice'
+        '#description' => 'Enter the Site ID. You can find it in the CardGate backoffice.'
     );
 
     $form['cardgate_hash_key'] = array(
         '#type' => 'textfield',
-        '#title' => 'Hash Key',
+        '#title' => 'Hash key',
         '#default_value' => variable_get( 'cardgate_hash_key', '' ),
-        '#description' => 'Enter the Site id. You can find it in the CARDGATE backoffice'
+        '#description' => 'Enter the Hash key. You can find it in the CardGate backoffice.'
     );
 
     $form['cardgate_language'] = array(
@@ -243,14 +243,14 @@ function uc_cardgate_settings_form() {
         '#title' => 'Language',
         '#options' => $options['language'],
         '#default_value' => variable_get( 'cardgate_language', 'NL' ),
-        '#description' => t( 'Select the language' ),
+        '#description' => t( 'Select the language.' ),
     );
     
     $form['cardgate_cardgate_info'] = array(
         '#type' => 'textarea',
         '#title' => 'Payment method description',
-        '#default_value' => variable_get( 'cardgate_cardgate_info', 'You will be redirected to the CARDGATE page to complete the payment' ),
-        '#description' => t( 'The description of the payment method displayed to customers in checkout' ),
+        '#default_value' => variable_get( 'cardgate_cardgate_info', 'You will be redirected to the CardGate page to complete the payment.' ),
+        '#description' => t( 'The description of the payment method displayed to customers in checkout.' ),
     );
     $form['cardgate_showimages'] = array(
         '#type' => 'checkbox',
@@ -264,7 +264,7 @@ function uc_cardgate_settings_form() {
         '#title' => 'Log to files',
         '#options' => 'Enable logging',
         '#default_value' => variable_get( 'cardgate_dologging', 'true' ),
-        '#description' => t( 'It is recommended to always log the CARDGATE data. Currently the folder ' ) . ((uc_cardgate_canLog()) ? "is writable" : "is NOT writable!"),
+        '#description' => t( 'It is recommended to always log the CardGate data. Currently the folder ' ) . ((uc_cardgate_canLog()) ? "is writable" : "is NOT writable!"),
     );
     return system_settings_form( $form );
 }
@@ -274,13 +274,13 @@ function uc_cardgate_settings_form() {
  */
 function uc_cardgate_form_alter( &$form, $form_state, $form_id ) {
     if ( $form_id == 'uc_payment_methods_form' ) {
-        $form['method_cardgatecc']['#title'] = 'Cardgate Settings';
+        $form['method_cardgatecc']['#title'] = 'CardGate Settings';
     }
     if ( empty( $_POST ) && uc_cardgate_checkValue( "cardgate_site_id" ) === FALSE ) {
-        drupal_set_message( t( 'CARDGATE Site ID must be set to accept payments.' ), 'error' );
+        drupal_set_message( t( 'CardGate site ID must be set to accept payments.' ), 'error' );
     }
     if ( empty( $_POST ) && uc_cardgate_checkValue( "cardgate_hash_key" ) === FALSE ) {
-        drupal_set_message( t( 'CARDGATE Hash Key must be set to accept payments.' ), 'error' );
+        drupal_set_message( t( 'CardGate hash Key must be set to accept payments.' ), 'error' );
     }
 }
 
@@ -297,15 +297,15 @@ function uc_cardgate_store_status() {
     if ( !variable_get( 'cardgate_site_id', '' ) ) {
         $statuses[] = array(
             'status' => 'error',
-            'title' => t( 'Cardgate Site ID' ),
-            'desc' => t( 'The Cardgate Site ID has to be set before any transactions can be made' ),
+            'title' => t( 'CardGate site ID' ),
+            'desc' => t( 'The CardGate site ID has to be set before any transactions can be made' ),
         );
     }
     if ( !variable_get( 'cardgate_prefix', '' ) ) {
         $statuses[] = array(
             'status' => 'error',
-            'title' => t( 'Cardgate Prefix' ),
-            'desc' => t( 'The Cardgate prefix has to be set before any transactions can be made' ),
+            'title' => t( 'CardGate Prefix' ),
+            'desc' => t( 'The CardGate prefix has to be set before any transactions can be made' ),
         );
     }
     return $statuses;
@@ -369,7 +369,7 @@ function uc_cardgate_get_supported_languages() {
  *
  */
 function uc_cardgate_test() {
-    return "CARDGATE module URL correct";
+    return "CardGate module URL correct";
 }
 
 function uc_cardgate_success() {
@@ -410,7 +410,7 @@ function uc_cardgate_failure() {
         if ( $order->order_status == 'canceled' ) {
             uc_order_update_status($orderID, 'canceled');
 // Display page
-            watchdog( 'uc_cardgate', 'CARDGATE returned an error for this payment.', array(), WATCHDOG_ERROR, NULL );
+            watchdog( 'uc_cardgate', 'CardGate returned an error for this payment.', array(), WATCHDOG_ERROR, NULL );
             drupal_set_message( 'Transaction canceled or failed', 'error' );
             if ($language == 'NL'){
                 $output= CARDGATE_LANG_NL_ERROR_PAGE;
@@ -423,7 +423,7 @@ function uc_cardgate_failure() {
         if ( $order->order_status == 'pending' ) {
             uc_order_update_status($orderID, 'pending');
 // Display page
-            watchdog( 'uc_cardgate', 'CARDGATE returned an error for this payment.', array(), WATCHDOG_ERROR, NULL );
+            watchdog( 'uc_cardgate', 'CardGate returned an error for this payment.', array(), WATCHDOG_ERROR, NULL );
             drupal_set_message( 'Transaction pending');
             if ($language == 'NL'){
                 $output= CARDGATE_LANG_NL_PENDING_PAGE;
