@@ -8,7 +8,7 @@ Deze module is geschikt voor Drupal versie **7.x** en maakt gebruik van Ubercart
 
 ## Voorbereiding
 
-Voor het gebruik van deze module zijn CardGate gegevens nodig.
+Voor het gebruik van deze module zijn CardGate gegevens nodig.  
 Bezoek hiervoor [Mijn CardGate](https://my.cardgate.com/) en haal daar je  site ID and hash key op,  
 of neem contact op met je accountmanager.
 
