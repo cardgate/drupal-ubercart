@@ -14,9 +14,9 @@ of neem contact op met je accountmanager.
 
 ## Installatie
 
-1. Download en unzip het **uc_cardgate.zip** bestand op je bureaublad.
+1. Download en unzip de meest recente [source code](https://github.com/cardgate/drupal-ubercart/releases) op je bureaublad.
 
-2. Upload de **inhoud** van de zipfile naar je **Drupal modules** map, die je hier kunt vinden:  
+2. Upload de **uc_cardgate** map naar je **Drupal modules** map, die je hier kunt vinden:  
    **http://mijnwebshop.com/htdocs/sites/all/modules/**  
   (Vervang **http://mijnwebshop.com** met de URL van jouw webshop, zodat de bestanden in de  
   **modules map** terecht komen.)
