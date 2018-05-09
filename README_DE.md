@@ -30,13 +30,13 @@ Gehen zu [My CardGate](https://my.cardgate.com/) and retrieve your site ID and h
 
 4. Gehen Sie zum **Adminbereich** Ihres Webshops und selektieren Sie **Admin, Store, Payment**.   
 
-5. Klicken Sie auf den ***CardGate settings** link.
+5. Klicken Sie auf den **CardGate settings** link.
 
 6. Füllen Sie die **Site ID** und den **Hash Key** ein, diesen können sie unter **Sites** auf [My CardGate](https://my.cardgate.com/) finden.
 
 7. Füllen Sie die **Standardsprache** ein, die Sie in Ihrem Webshop verwenden und klicken Sie auf **Save configuration**.
 
-8. Wählen sie bei **Payment methods** alle Zahlungsmittel aus, die aktivieren möchten.
+8. Wählen sie bei **Payment methods** alle Zahlungsmittel aus, die aktivieren möchten.  
    Achtung: Wählen Sie das CardGate Zahlungsmittel **nicht** aus, diese wird lediglich für die Einstellungen gebraucht.
 
 9. Klicken Sie auf **speichern**.
