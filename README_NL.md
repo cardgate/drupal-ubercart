@@ -18,9 +18,7 @@ of neem contact op met je accountmanager.
 
 2. Upload de **uc_cardgate** map naar je **Drupal modules** map, die je hier kunt vinden:  
    **http://mijnwebshop.com/htdocs/sites/all/modules/**  
-  (Vervang **http://mijnwebshop.com** met de URL van jouw webshop, zodat de bestanden in de  
-  **modules map** terecht komen.)
-
+  (Vervang **http://mijnwebshop.com** met de URL van jouw webshop, zodat de bestanden in de **modules map** terecht komen.)
 
 ## Configuratie
 
