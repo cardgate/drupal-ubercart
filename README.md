@@ -52,4 +52,4 @@ Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID a
     
 ## Requirements
 
-No further requirements.
+No further requirements. 

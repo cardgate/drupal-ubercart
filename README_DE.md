@@ -9,7 +9,7 @@ Dieses Modul is geeignet für Ubercart version **3.x**
 ## Vorbereitung
 
 Um dieses Modul zu verwenden sind Zugangsdate zur **CardGate** notwendig.  
-Gehen zu [My CardGate](https://my.cardgate.com/) und fragen Sie Ihre Zugangsdaten an, oder kontaktieren Sie Ihren Accountmanager.  
+Gehen zu [My CardGate](https://my.cardgate.com/) und fragen Sie Ihre **site ID** und **hash key** an, oder kontaktieren Sie Ihren Accountmanager.  
 
 ## Installation
 
