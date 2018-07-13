@@ -35,7 +35,7 @@ of neem contact op met je accountmanager.
 
 5. Klik op de **CardGate settings** link.
 
-6. Vul de **site ID** en de **hash Key** in, deze kun je vinden bij **Sites** op [Mijn CardGate](https://my.cardgate.com/).
+6. Vul de **site ID** en de **hash key** in, deze kun je vinden bij **Sites** op [Mijn CardGate](https://my.cardgate.com/).
 
 7. Vul de **standaard taal** in die je webshop gebruikt, en klik op **Save configuration**.
 
