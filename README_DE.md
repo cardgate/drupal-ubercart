@@ -8,8 +8,8 @@ Dieses Modul is geeignet für Ubercart version **3.x**
 
 ## Vorbereitung
 
-The usage of this module requires that you have obtained CardGate security credentials.
-Gehen zu [My CardGate](https://my.cardgate.com/) and retrieve your site ID and hash key, oder kontaktieren Sie Ihren Accountmanager.  
+Um dieses Modul zu verwenden sind Zugangsdate zur **CardGate** notwendig.  
+Gehen zu [My CardGate](https://my.cardgate.com/) und fragen Sie Ihre Zugangsdaten an, oder kontaktieren Sie Ihren Accountmanager.  
 
 ## Installation
 
@@ -32,7 +32,7 @@ Gehen zu [My CardGate](https://my.cardgate.com/) and retrieve your site ID and h
 
 5. Klicken Sie auf den **CardGate settings** link.
 
-6. Füllen Sie die **Site ID** und den **Hash Key** ein, diesen können sie unter **Sites** auf [My CardGate](https://my.cardgate.com/) finden.
+6. Füllen Sie die **site ID** und den **hash key** ein, diesen können sie unter **Sites** auf [My CardGate](https://my.cardgate.com/) finden.
 
 7. Füllen Sie die **Standardsprache** ein, die Sie in Ihrem Webshop verwenden und klicken Sie auf **Save configuration**.
 
