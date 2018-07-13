@@ -37,7 +37,7 @@ Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID a
 
 7. Enter the **default language** used by your webshop, and click **Save configuration**.
 
-8. At **Payment methods** checkmark all the payment methods that you wish to activate.
+8. At **Payment methods** checkmark all the payment methods that you wish to activate.  
    Attention: Do **not** checkmark the **CardGate** payment method, this is only used for the settings.
    
 9. Click **Save configuration**.
