@@ -33,7 +33,7 @@ Please visit [**My CardGate**](https://my.cardgate.com/) and retrieve your **sit
 
 5. Click on the **CardGate settings** link.
 
-6. Now enter the **site ID**, and the **hash key** which you can find at **Sites** on [My CardGate](https://my.cardgate.com/). 
+6. Now enter the **site ID**, and the **hash key** which you can find at **Sites** on [**My CardGate**](https://my.cardgate.com/). 
 
 7. Enter the **default language** used by your webshop, and click **Save configuration**.
 
