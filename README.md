@@ -9,7 +9,7 @@ This module supports Ubercart version **3.x** for Drupal 7.
 ## Preparation
 
 The usage of this module requires that you have obtained CardGate security credentials.  
-Please visit [My CardGate](https://my.cardgate.com/) and retrieve your site ID and hash key, or contact your accountmanager.
+Please visit [My CardGate](https://my.cardgate.com/) and retrieve your **site ID** and **hash key**, or contact your accountmanager.
 
 ## Installation
 
