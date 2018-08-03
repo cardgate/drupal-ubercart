@@ -32,6 +32,7 @@ function uc_cardgate_getPaymentMethods() {
         array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "directebanking.png" ),
         array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "mistercash.gif" ),
         array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.gif" ),
+        array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.png" ),
         array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.gif" ),
         array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.gif" ),
         array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.gif" ),
