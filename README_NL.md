@@ -9,12 +9,12 @@ Deze module is geschikt voor Drupal versie **7.x** en maakt gebruik van Ubercart
 ## Voorbereiding
 
 Voor het gebruik van deze module zijn CardGate gegevens nodig.  
-Bezoek hiervoor [Mijn CardGate](https://my.cardgate.com/) en haal daar je  **site ID** and **hash key** op,  
+Bezoek hiervoor [**Mijn CardGate**](https://my.cardgate.com/) en haal daar je  **site ID** and **hash key** op,  
 of neem contact op met je accountmanager.
 
 ## Installatie
 
-1. Download en unzip de meest recente [source code](https://github.com/cardgate/drupal-ubercart/releases) op je bureaublad.
+1. Download en unzip de meest recente [**source code**](https://github.com/cardgate/drupal-ubercart/releases) op je bureaublad.
 
 2. Upload de **uc_cardgate** map naar je **Drupal modules** map, die je hier kunt vinden:  
    **http://mijnwebshop.com/htdocs/sites/all/modules/**  
@@ -35,7 +35,7 @@ of neem contact op met je accountmanager.
 
 5. Klik op de **CardGate settings** link.
 
-6. Vul de **site ID** en de **hash key** in, deze kun je vinden bij **Sites** op [Mijn CardGate](https://my.cardgate.com/).
+6. Vul de **site ID** en de **hash key** in, deze kun je vinden bij **Sites** op [**Mijn CardGate**](https://my.cardgate.com/).
 
 7. Vul de **standaard taal** in die je webshop gebruikt, en klik op **Save configuration**.
 
@@ -44,7 +44,7 @@ of neem contact op met je accountmanager.
    
 9. Klik op **Save configuration**.
    
-10. Ga naar [Mijn CardGate](https://my.cardgate.com/), kies **Sites** en selecteer de juiste site.
+10. Ga naar [**Mijn CardGate**](https://my.cardgate.com/), kies **Sites** en selecteer de juiste site.
 
 11. Vul bij **Technische koppeling** de **Callback URL** in, bijvoorbeeld:  
     **http://mijnwebshop.com/?q=cart/cgp_response**  

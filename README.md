@@ -9,11 +9,11 @@ This module supports Ubercart version **3.x** for Drupal 7.
 ## Preparation
 
 The usage of this module requires that you have obtained CardGate security credentials.  
-Please visit [My CardGate](https://my.cardgate.com/) and retrieve your **site ID** and **hash key**, or contact your accountmanager.
+Please visit [**My CardGate**](https://my.cardgate.com/) and retrieve your **site ID** and **hash key**, or contact your accountmanager.
 
 ## Installation
 
-1. Download and unzip the most recent [source code](https://github.com/cardgate/drupal-ubercart/releases) file on your desktop.
+1. Download and unzip the most recent [**source code**](https://github.com/cardgate/drupal-ubercart/releases) file on your desktop.
 
 2. Upload the **uc_cardgate** folder to your **Drupal modules** folder, which you can find here:  
    **http://mywebshop.com/htdocs/sites/all/modules/**  
@@ -42,7 +42,7 @@ Please visit [My CardGate](https://my.cardgate.com/) and retrieve your **site ID
    
 9. Click **Save configuration**.
    
-10. Go to [My CardGate](https://my.cardgate.com/), choose **Sites** and select the appropriate site.
+10. Go to [**My CardGate**](https://my.cardgate.com/), choose **Sites** and select the appropriate site.
 
 11. Go to **Connection to the website** and enter the **Callback URL**, for example:  
     **http://mywebshop.com/?q=cart/cgp_response**
