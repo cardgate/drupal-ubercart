@@ -26,20 +26,21 @@ require_once(drupal_get_path( 'module', 'uc_cardgate' ) . '/settings/language.ph
  */
 function uc_cardgate_getPaymentMethods() {
     $pm = array(
+        array( "id" => "cgp_afterpay", "name" => "Afterpay", "descr" => "Pay using Afterpay", "img" => "afterpay.png" ),
+        array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.gif" ),
+        array( "id" => "cgp_bitcoin", "name" => "Bitcoin", "descr" => "Pay using Bitcoin", "img" => "bitcoin.png" ),
+		array( "id" => "cgp_billink", "name" => "Billink", "descr" => "Pay using Billink", "img" => "billink.png" ),
         array( "id" => "cgp_cardgate", "name" => "CardGate", "descr" => "Pay using CardGate", "img" => "cardgate.png" ),
         array( "id" => "cgp_creditcard", "name" => "CreditCard", "descr" => "Pay using CreditCard", "img" => "creditcard.gif"),
-        array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.gif" ),
+        array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.gif" ),
         array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "directebanking.png" ),
+        array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.gif" ),
+        array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.gif" ),
+        array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.png" ),
         array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "mistercash.gif" ),
         array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.gif" ),
         array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.png" ),
-        array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.gif" ),
-        array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.gif" ),
-        array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.gif" ),
-        array( "id" => "cgp_afterpay", "name" => "Afterpay", "descr" => "Pay using Afterpay", "img" => "afterpay.png" ),
-        array( "id" => "cgp_bitcoin", "name" => "Bitcoin", "descr" => "Pay using Bitcoin", "img" => "bitcoin.png" ),
-        array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.png" ),
-        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.png" ),
+        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.png" )
     );
     return $pm;
 }
