@@ -36,6 +36,7 @@ function uc_cardgate_getPaymentMethods() {
         array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "directebanking.png" ),
         array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.gif" ),
         array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.gif" ),
+        array( "id" => "cgp_idealqr", "name" => "iDEAL QR", "descr" => "Pay using iDEAL QR", "img" => "idealqr.png" ),
         array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.png" ),
         array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "mistercash.gif" ),
         array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.gif" ),
