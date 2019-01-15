@@ -26,22 +26,25 @@ require_once(drupal_get_path( 'module', 'uc_cardgate' ) . '/settings/language.ph
  */
 function uc_cardgate_getPaymentMethods() {
     $pm = array(
-        array( "id" => "cgp_afterpay", "name" => "Afterpay", "descr" => "Pay using Afterpay", "img" => "afterpay.png" ),
-        array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.gif" ),
-        array( "id" => "cgp_bitcoin", "name" => "Bitcoin", "descr" => "Pay using Bitcoin", "img" => "bitcoin.png" ),
-		array( "id" => "cgp_billink", "name" => "Billink", "descr" => "Pay using Billink", "img" => "billink.png" ),
-        array( "id" => "cgp_cardgate", "name" => "CardGate", "descr" => "Pay using CardGate", "img" => "cardgate.png" ),
-        array( "id" => "cgp_creditcard", "name" => "CreditCard", "descr" => "Pay using CreditCard", "img" => "creditcard.gif"),
-        array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.gif" ),
-        array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "directebanking.png" ),
-        array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.gif" ),
-        array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.gif" ),
-        array( "id" => "cgp_idealqr", "name" => "iDEAL QR", "descr" => "Pay using iDEAL QR", "img" => "idealqr.png" ),
-        array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.png" ),
-        array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "mistercash.gif" ),
-        array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.gif" ),
-        array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.png" ),
-        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.png" )
+    	array( "id" => "cgp_cardgate", "name" => "CardGate", "descr" => "Pay using CardGate", "img" => "cardgate.png" ),
+        array( "id" => "cgp_afterpay", "name" => "Afterpay", "descr" => "Pay using Afterpay", "img" => "afterpay.svg" ),
+        array( "id" => "cgp_bancontact", "name" => "Bancontact", "descr" => "Pay using Bancontact", "img" => "bancontact.svg" ),
+        array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.svg" ),
+        array( "id" => "cgp_billink", "name" => "Billink", "descr" => "Pay using Billink", "img" => "billink.svg" ),
+        array( "id" => "cgp_bitcoin", "name" => "Bitcoin", "descr" => "Pay using Bitcoin", "img" => "bitcoin.svg" ),
+        array( "id" => "cgp_creditcard", "name" => "CreditCard", "descr" => "Pay using CreditCard", "img" => "creditcard.svg"),
+        array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.svg" ),
+        array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "sofortbanking.svg" ),
+        array( "id" => "cgp_giftcard", "name" => "Gift Card", "descr" => "Pay using Gift Card", "img" => "giftcard.svg" ),
+        array( "id" => "cgp_giropay", "name" => "Giropay", "descr" => "Pay using Giropay", "img" => "giropay.svg" ),
+        array( "id" => "cgp_ideal", "name" => "iDEAL", "descr" => "Pay using iDEAL", "img" => "ideal.svg" ),
+        array( "id" => "cgp_idealqr", "name" => "iDEAL QR", "descr" => "Pay using iDEAL QR", "img" => "idealqr.svg" ),
+        array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.svg" ),
+        array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "bancontact.svg" ),
+        array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.svg" ),
+        array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.svg" ),
+        array( "id" => "cgp_paysafecash", "name" => "Paysafecash", "descr" => "Pay using Paysafecash", "img" => "paysafecash.svg" ),
+        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.svg" )
     );
     return $pm;
 }
@@ -60,16 +63,31 @@ function uc_cardgate_getModuleFiles() {
 function uc_cardgate_uc_payment_method() {
     $i = -10;
     $is_first = true;
+    $checkoutview = variable_get('cardgate_checkoutview', 'text');
+    
     foreach ( uc_cardgate_getPaymentMethods() as $key => $val ) {
         $is_first ? $callback = 'uc_payment_method_cardgate' : $callback = 'uc_payment_method_cardgate_sub';
         if ( $val['id'] == 'cgp_ideal' ) {
             $callback = 'uc_payment_method_cardgate_ideal';
         }
+	
+    	switch ($checkoutview){
+    		case 'logos':
+    			$title = uc_cardgate_getImage($val['img']);
+    		break;
+    		case 'text':
+    			$title = t( $val["name"] );
+    		break;
+    		case 'logosandtext':
+    		 $title = uc_cardgate_getImage($val['img']) . variable_get( 'cardgate_' . $val["id"] . '_title', ' '.t( $val["name"] ) );
+    		break;
+    	}
+		
         $is_first = false;
         $methods[] = array(
             'id' => $val["id"],
             'name' => t( $val["name"] ),
-            'title' => uc_cardgate_getImage($val['img']) . variable_get( 'cardgate_' . $val["id"] . '_title', t( $val["name"] ) ),
+            'title' => $title,
             'desc' => t( $val["descr"] ),
             'redirect' => 'uc_cardgate_form',
             'callback' => $callback,
@@ -210,6 +228,11 @@ function uc_cardgate_settings_form() {
 
     $options['stream']["CURL"] = "CURL (recommended)";
     $options['stream']["FOPEN"] = "FOPEN (requires allow_url_fopen)";
+    
+    $options['checkoutview']['logos'] = "Logo's";
+	$options['checkoutview']['text'] = 'Text';
+    $options['checkoutview']['logosandtext'] = "Logo's and Text";
+
 
     $cgp = new CARDGATE( variable_get( 'cardgate_site_id', '' ), variable_get( 'cardgate_prefix', '' ) );
 
@@ -255,12 +278,12 @@ function uc_cardgate_settings_form() {
         '#default_value' => variable_get( 'cardgate_cardgate_info', 'You will be redirected to the CardGate page to complete the payment.' ),
         '#description' => t( 'The description of the payment method displayed to customers in checkout.' ),
     );
-    $form['cardgate_showimages'] = array(
-        '#type' => 'checkbox',
-        '#title' => 'Show images of payment methods',
-        '#options' => 'Show images of payment methods',
-        '#default_value' => variable_get( 'cardgate_showimages', 'true' ),
-        '#description' => t( 'Show the images of the payment methods on the checkout screen.' ),
+    $form['cardgate_checkoutview'] = array(
+    	'#type' => 'select',
+        '#title' => 'Checkout View',
+        '#options' => $options['checkoutview'],
+        '#default_value' => variable_get( 'cardgate_checkoutview', 'text' ),
+        '#description' => t( 'Select the Checkout view' ),
     );
     $form['cardgate_dologging'] = array(
         '#type' => 'checkbox',
@@ -323,8 +346,8 @@ function uc_cardgate_store_status() {
  */
 function uc_cardgate_getImage($img) {
     global $base_url;
-    if ( file_exists( drupal_get_path( 'module', 'uc_cardgate' ) . '/images/'.$img ) && variable_get( 'cardgate_showimages', '' ) == 1 ) {
-        return '<img style="maxWidth:20px;" src="' . $base_url . '/' . drupal_get_path( 'module', 'uc_cardgate' ) . '/images/'.$img . '" border="0" > ';
+    if ( file_exists( drupal_get_path( 'module', 'uc_cardgate' ) . '/images/'.$img ) ) {
+    	return '<img width="75px;" height="30px;" src="' . $base_url . '/' . drupal_get_path( 'module', 'uc_cardgate' ) . '/images/'.$img . '" border="0" >';
     } else
         return "";
 }
