@@ -2,12 +2,12 @@
 
 ####################################################################
 #                                                                   #
-#	The property of CARDGATE www.cardgate.com                   #
+#	The property of CARDGATE www.cardgate.com                   	#
 #                                                                   #
 #   The merchant is entitled to change de CARDGATE plug-in code,    #
-#	any changes will be at merchant's own risk.                 #
-#	Requesting CARDGATE support for a modified plug-in will be  #
-#	charged in accordance with the standard CARDGATE tariffs.   #
+#	any changes will be at merchant's own risk.                 	#
+#	Requesting CARDGATE support for a modified plug-in will be  	#
+#	charged in accordance with the standard CARDGATE tariffs.   	#
 #                                                                   #
 ####################################################################
 
@@ -218,6 +218,8 @@ function uc_payment_method_cardgate_ideal( $op, &$order, $form = NULL, &$form_st
 function uc_cardgate_settings_form() {
 
     global $base_url, $base_secure_url, $base_insecure_url;
+    
+    variable_set('cardgate_issuerrefresh', 0);
 
     foreach ( uc_cardgate_get_supported_languages() as $val ) {
         $options['language'][$val["code"]] = $val["descr"];
