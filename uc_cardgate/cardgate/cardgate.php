@@ -15,7 +15,7 @@
 
 class CARDGATE {
 
-    var $version = "7.0.10";
+    var $version = "7.0.11";
     protected $siteID = 0;
     protected $hashKey = "";
     protected $orderID = "";
@@ -172,34 +172,6 @@ class CARDGATE {
 
         return true;
     }
-
-    /**
-     * Returns an array of the data for the SUCCESS or ERROR page.
-     * @return array Returns an array with data
-     */
-    /*
-      public function GetData() {
-      $o = new stdClass();
-
-      $o->orderID = (isset( $_GET['reference'] )) ? $_GET['reference'] : "";
-      $o->paymentID = (isset( $_GET['sessionid'] )) ? $_GET['sessionid'] : "";
-      $o->amount = (isset( $_GET['amount'] )) ? $_GET['amount'] / 100 : "";
-
-      return $o;
-      }
-     * 
-     *  $o = new stdClass();
-
-      $o->status = (isset( $_GET['Status'] )) ? $_GET['Status'] : "";
-      $o->statusCode = (isset( $_GET['StatusCode'] )) ? $_GET['StatusCode'] : "";
-      $o->merchant = (isset( $_GET['Merchant'] )) ? $_GET['Merchant'] : "";
-      $o->orderID = (isset( $_GET['OrderID'] )) ? $_GET['OrderID'] : "";
-      $o->paymentID = (isset( $_GET['PaymentID'] )) ? $_GET['PaymentID'] : "";
-      $o->reference = (isset( $_GET['Reference'] )) ? $_GET['Reference'] : "";
-      $o->transactionID = (isset( $_GET['TransactionID'] )) ? $_GET['TransactionID'] : "";
-      $o->checksum = (isset( $_GET['Checksum'] )) ? $_GET['Checksum'] : "";
-
-     */
 
     /**
      * This method is meant for 'listening' to and handling all postbacks sent by CARDGATE.
@@ -402,33 +374,45 @@ class CARDGATE {
     }
 
     public function getBankOptions() {
-        $url = 'https://gateway.cardgateplus.com/cache/idealDirectoryRabobank.dat';
-
+        
+        $this->checkBankOptions();
+        
+        $aIssuers = unserialize(variable_get('cardgate_issuers',[]));
+        $aIssuers[0] = 'Kies uw bank a.u.b.';
+        return $aIssuers;
+    }
+    
+    private function checkBankOptions() {
+        $iIssuerRefesh = variable_get( 'cardgate_issuerrefresh', false );
+        
+        if ($iIssuerRefesh) {
+            $iIssuerRefresh = (int) $iIssuerRefesh;
+            if ($iIssuerRefresh < time()) {
+                $this->cacheBankOptions();
+            }
+        } else {
+            $this->cacheBankOptions();
+        }
+    }
+    
+    private function cacheBankOptions() {
+        $iCacheTime = 24 * 60 * 60;
+        $iIssuerRefresh = time() + $iCacheTime;
+        variable_set('cardgate_issuerrefresh', $iIssuerRefresh);
+        
+        $test = variable_get( 'cardgate_mode', '' ) == 'test';
+        if($test){
+            $url = 'https://secure-staging.curopayments.net/cache/idealDirectoryCUROPayments.dat';
+        } else {
+            $url = 'https://secure.curopayments.net/cache/idealDirectoryCUROPayments.dat';
+        }
+        
         if ( !ini_get( 'allow_url_fopen' ) || !function_exists( 'file_get_contents' ) ) {
             $result = false;
         } else {
             $result = file_get_contents( $url );
         }
-
-        $aBanks = array();
-
-        if ( $result ) {
-            $aBanks = unserialize( $result );
-            $aBanks[0] = '-Maak uw keuze a.u.b.-';
-        }
-        if ( count( $aBanks ) < 1 ) {
-            $aBanks = array( '0031' => 'ABN Amro',
-                '0091' => 'Friesland Bank',
-                '0721' => 'ING Bank',
-                '0021' => 'Rabobank',
-                '0751' => 'SNS Bank',
-                '0761' => 'ASN Bank',
-                '0771' => 'SNS Regio Bank',
-                '0511' => 'Triodos Bank',
-                '0161' => 'Van Landschot Bank'
-            );
-        }
-        return $aBanks;
+        variable_set('cardgate_issuers', $result);
     }
 
 }
