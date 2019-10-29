@@ -41,6 +41,7 @@ function uc_cardgate_getPaymentMethods() {
         array( "id" => "cgp_idealqr", "name" => "iDEAL QR", "descr" => "Pay using iDEAL QR", "img" => "idealqr.svg" ),
         array( "id" => "cgp_klarna", "name" => "Klarna", "descr" => "Pay using Klarna", "img" => "klarna.svg" ),
         array( "id" => "cgp_mistercash", "name" => "MisterCash", "descr" => "Pay using MisterCash", "img" => "bancontact.svg" ),
+	    array( "id" => "cgp_onlineueberweisen", "name" => "OnlineÜberweisen", "descr" => "Pay using OnlineÜberweisen", "img" => "onlineueberweisen.svg" ),
         array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.svg" ),
         array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.svg" ),
         array( "id" => "cgp_paysafecash", "name" => "Paysafecash", "descr" => "Pay using Paysafecash", "img" => "paysafecash.svg" ),
