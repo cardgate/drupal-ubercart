@@ -2,6 +2,8 @@
 
 # CardGate module voor Drupal 7 Ubercart 3.x
 
+[![Build Status](https://travis-ci.org/cardgate/drupal-ubercart.svg?branch=master)](https://travis-ci.org/cardgate/drupal-ubercart)
+
 ## Support
 
 Deze module is geschikt voor Drupal versie **7.x** en maakt gebruik van Ubercart versie **3.x** .  
