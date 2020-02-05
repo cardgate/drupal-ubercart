@@ -1,0 +1,16 @@
+{
+  "name": "cardgate/drupal-ubercart",
+  "type": "library",
+  "description": "CardGate payment processing module for Drupal Ubercart",
+  "keywords": [
+    "drupal",
+    "ubercart",
+    "cardgate",
+    "payment"
+  ],
+  "homepage": "https://www.cardgate.com",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": { "Cardgate\\drupal-ubercart\\" : "" }
+  }
+}
