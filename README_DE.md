@@ -15,9 +15,9 @@ Gehen zu [**My CardGate**](https://my.cardgate.com/) und fragen Sie Ihre **site 
 
 ## Installation
 
-1. Downloaden und entpacken Sie den aktuellsten [**Source Code**](https://github.com/cardgate/drupal-ubercart/releases/) auf Ihrem Desktop.
+1. Downloaden und entpacken Sie den aktuellsten [**cardgate.zip**](https://github.com/cardgate/drupal-ubercart/releases/) Datei auf Ihrem Desktop.
 
-2. Uploaden Sie den **uc_cardgate** Ordner in Ihren **Drupal Modules** Ordner, welchen Sie hier finden können:  
+2. Uploaden Sie den **uc_cardgate**-Ordner in Ihren **Drupal Modules**-Ordner, welchen Sie hier finden können:  
    **http://mywebshop.com/htdocs/sites/all/modules/**  
    (Ersetzen Sie **http://mywebshop.com/** durch die URL von Ihrem Webshop.)
 
