@@ -16,7 +16,7 @@ of neem contact op met je accountmanager.
 
 ## Installatie
 
-1. Download en unzip het meest recente [**cardgate.zip**](https://github.com/cardgate/drupal-ubercart/releases) op je bureaublad.
+1. Download en unzip het meest recente [**cardgate.zip**](https://github.com/cardgate/drupal-ubercart/releases) bestand op je bureaublad.
 
 2. Upload de **uc_cardgate** map naar je **Drupal modules** map, die je hier kunt vinden:  
    **http://mijnwebshop.com/htdocs/sites/all/modules/**  
