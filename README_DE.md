@@ -6,7 +6,7 @@
 
 ## Support
 
-Dieses Modul is geeignet für Ubercart version **3.x** 
+Dieses Plugin is geeignet für Drupal Version 7.x und macht Gebrauch von Ubercart Version **3.x**
 
 ## Vorbereitung
 
