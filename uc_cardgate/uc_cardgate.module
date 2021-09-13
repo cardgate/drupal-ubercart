@@ -45,7 +45,8 @@ function uc_cardgate_getPaymentMethods() {
         array( "id" => "cgp_paypal", "name" => "PayPal", "descr" => "Pay using PayPal", "img" => "paypal.svg" ),
         array( "id" => "cgp_paysafecard", "name" => "Paysafecard", "descr" => "Pay using Paysafecard", "img" => "paysafecard.svg" ),
         array( "id" => "cgp_paysafecash", "name" => "Paysafecash", "descr" => "Pay using Paysafecash", "img" => "paysafecash.svg" ),
-        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.svg" )
+        array( "id" => "cgp_przelewy24", "name" => "Przelewy24", "descr" => "Pay using Przelewy24", "img" => "przelewy24.svg" ),
+	    array( "id" => "cgp_spraypay", "name" => "SprayPay", "descr" => "Pay using SprayPay", "img" => "spraypay.svg" )
     );
     return $pm;
 }
