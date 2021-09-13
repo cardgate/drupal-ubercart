@@ -54,4 +54,4 @@ Please visit [**My CardGate**](https://my.cardgate.com/) and retrieve your **sit
     
 ## Requirements
 
-No further requirements. 
+No further requirements.
