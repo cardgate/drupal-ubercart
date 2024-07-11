@@ -31,7 +31,6 @@ class CARDGATE {
     protected $loggingDirectory = ".";
     protected $pageData = NULL;
     protected $notifyUrl = "";
-    protected $testNotifyUrl = "";
 
     /**
      * Constructor
@@ -43,15 +42,13 @@ class CARDGATE {
     public function __construct( $siteID = NULL, $secretCode = NULL ) {
         $this->siteID = $siteID;
         $this->hashKey = $secretCode;
+        $url = "https://secure.curopayments.net/gateway/cardgate/";
 
         $test = variable_get( 'cardgate_mode', '' ) == 'test';
-
-
         if ( $test ) {
-            $this->testNotifyUrl = "https://secure-staging.curopayments.net/gateway/cardgate/";
-        } else {
-            $this->notifyUrl = "https://secure.curopayments.net/gateway/cardgate/";
+            $url = "https://secure-staging.curopayments.net/gateway/cardgate/";
         }
+        $this->notifyUrl = $url;
     }
 
 
@@ -62,15 +59,12 @@ class CARDGATE {
      * @since Version 1.01
      * @return string
      */
-    public function GetAPIID() {
-        return $this->generateFingerPrint();
-    }
 
     /**
      * Find for a string in an array of strings
      * @access protected
-     * @param $collection An array of strings
-     * @param $find The string that needs to be found in the collection
+     * @param $collection
+     * @param $find
      * @return true|false TRUE if the string is found, otherwise FALSE
      */
     protected function inCollection( $collection, $find ) {
@@ -210,9 +204,7 @@ class CARDGATE {
     }
 
     public function getNotifyUrl() {
-        $test = variable_get( 'cardgate_mode', '' );
-        $notifyUrl = ($test == 'test' ? $this->testNotifyUrl : $this->notifyUrl);
-        return $notifyUrl;
+        return $this->notifyUrl;
     }
 
     public function getOrderData( $order ) {
