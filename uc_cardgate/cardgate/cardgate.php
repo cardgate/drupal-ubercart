@@ -15,7 +15,7 @@
 
 class CARDGATE {
 
-    var $version = "7.0.13";
+    var $version = '7.0.14';
     protected $siteID = 0;
     protected $hashKey = "";
     protected $orderID = "";
@@ -31,7 +31,6 @@ class CARDGATE {
     protected $loggingDirectory = ".";
     protected $pageData = NULL;
     protected $notifyUrl = "";
-    protected $testNotifyUrl = "";
 
     /**
      * Constructor
@@ -43,26 +42,16 @@ class CARDGATE {
     public function __construct( $siteID = NULL, $secretCode = NULL ) {
         $this->siteID = $siteID;
         $this->hashKey = $secretCode;
+        $url = "https://secure.curopayments.net/gateway/cardgate/";
 
         $test = variable_get( 'cardgate_mode', '' ) == 'test';
-
-
         if ( $test ) {
-            $this->testNotifyUrl = "https://secure-staging.curopayments.net/gateway/cardgate/";
-        } else {
-            $this->notifyUrl = "https://secure.curopayments.net/gateway/cardgate/";
+            $url = "https://secure-staging.curopayments.net/gateway/cardgate/";
         }
+        $this->notifyUrl = $url;
     }
 
-    /**
-     * Returns the current API version
-     * @access public
-     * @since Version 1.01
-     * @return string
-     */
-    public function GetAPIVersion() {
-        return $this->version;
-    }
+
 
     /**
      * Returns the API ID
@@ -70,15 +59,12 @@ class CARDGATE {
      * @since Version 1.01
      * @return string
      */
-    public function GetAPIID() {
-        return $this->generateFingerPrint();
-    }
 
     /**
      * Find for a string in an array of strings
      * @access protected
-     * @param $collection An array of strings
-     * @param $find The string that needs to be found in the collection
+     * @param $collection
+     * @param $find
      * @return true|false TRUE if the string is found, otherwise FALSE
      */
     protected function inCollection( $collection, $find ) {
@@ -218,9 +204,7 @@ class CARDGATE {
     }
 
     public function getNotifyUrl() {
-        $test = variable_get( 'cardgate_mode', '' );
-        $notifyUrl = ($test == 'test' ? $this->testNotifyUrl : $this->notifyUrl);
-        return $notifyUrl;
+        return $this->notifyUrl;
     }
 
     public function getOrderData( $order ) {
@@ -336,6 +320,7 @@ class CARDGATE {
         }
 
         $data = array();
+        $shop_data = system_get_info('module', 'uc_cart');
         $test = variable_get( 'cardgate_mode', '' );
         $my_country = array( 'country_id' => $order->billing_country );
         $b_country = uc_get_country_data( $my_country );
@@ -343,7 +328,6 @@ class CARDGATE {
         $extra = $order->order_id;
         $hashKey = variable_get( 'cardgate_hash_key', '' );
         $hash = md5( ($test == 'live' ? '' : 'TEST') . $this->siteID . $amount . $ref . $hashKey );
-
         $data['test'] = ($test == 'test' ? 1 : 0);
         $data['option'] = substr( $order->payment_method, 4 );
         $data['suboption'] = ($data['option'] == 'ideal' ? $_SESSION['bank'] : '');
@@ -363,7 +347,8 @@ class CARDGATE {
         $data['country_code'] = $b_country[0]['country_iso_code_2'];
         $data['hash'] = $hash;
         $data['shop_name'] = 'DrupalUbercart';
-        $data['shop_version'] = $data['plugin_name'] = 'Cardgate_Drupal';
+        $data['shop_version'] = $shop_data['version'];
+        $data['plugin_name'] = 'drupal_ubercart';
         $data['plugin_version'] = $this->version;
         $data['extra'] = $extra;
 
