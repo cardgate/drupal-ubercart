@@ -330,7 +330,9 @@ class CARDGATE {
         $hash = md5( ($test == 'live' ? '' : 'TEST') . $this->siteID . $amount . $ref . $hashKey );
         $data['test'] = ($test == 'test' ? 1 : 0);
         $data['option'] = substr( $order->payment_method, 4 );
-        $data['suboption'] = ($data['option'] == 'ideal' ? $_SESSION['bank'] : '');
+        if ( boolval( variable_get( 'cardgate_show_issuers') ) == true ) {
+            $data['suboption'] = ( $data['option'] == 'ideal' ? $_SESSION['bank'] : '' );
+        }
         $data['siteid'] = $this->siteID;
         $data['currency'] = $order->currency;
         $data['amount'] = $amount;
