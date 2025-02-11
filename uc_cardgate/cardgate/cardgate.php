@@ -15,7 +15,7 @@
 
 class CARDGATE {
 
-    var $version = '7.0.14';
+    var $version = '7.0.15';
     protected $siteID = 0;
     protected $hashKey = "";
     protected $orderID = "";
