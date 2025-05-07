@@ -63,14 +63,10 @@ function uc_cardgate_getModuleFiles() {
  */
 function uc_cardgate_uc_payment_method() {
     $i = -10;
-    $is_first = true;
     $checkoutview = variable_get('cardgate_checkoutview', 'text');
     
     foreach ( uc_cardgate_getPaymentMethods() as $key => $val ) {
-        $is_first ? $callback = 'uc_payment_method_cardgate' : $callback = 'uc_payment_method_cardgate_sub';
-        if ( $val['id'] == 'cgp_ideal' ) {
-            $callback = 'uc_payment_method_cardgate_ideal';
-        }
+        $val['id'] == 'cgp_cardgate' ? $callback = 'uc_payment_method_cardgate' : $callback = 'uc_payment_method_cardgate_sub';
 	
     	switch ($checkoutview){
     		case 'logos':
@@ -83,8 +79,7 @@ function uc_cardgate_uc_payment_method() {
     		 $title = uc_cardgate_getImage($val['img']) . variable_get( 'cardgate_' . $val["id"] . '_title', ' '.t( $val["name"] ) );
     		break;
     	}
-		
-        $is_first = false;
+
         $methods[] = array(
             'id' => $val["id"],
             'name' => t( $val["name"] ),
@@ -159,7 +154,7 @@ return $form;
 /**
  * Controller
  */
-function uc_payment_method_cardgate( $op, &$order, $form = NULL, &$form_state = NULL ) {    
+function uc_payment_method_cardgate( $op, &$order, $form = NULL, &$form_state = NULL ) {
     global $base_url;
     switch ( $op ) {
         case 'cart-details':
@@ -172,7 +167,7 @@ function uc_payment_method_cardgate( $op, &$order, $form = NULL, &$form_state = 
         case "settings":
             return(uc_cardgate_settings_form());
             break;
-        
+
     };
 }
 
@@ -187,42 +182,12 @@ function uc_payment_method_cardgate_sub( $op, &$order, $form = NULL, &$form_stat
     };
 }
 
-function uc_payment_method_cardgate_ideal( $op, &$order, $form = NULL, &$form_state = NULL ) {
-    global $base_url;
-    if ( boolval( variable_get( 'cardgate_show_issuers') ) == true ) {
-        switch ( $op ) {
-            case 'cart-details':
-                $cgp = new CARDGATE( variable_get( 'cardgate_site_id', '' ), variable_get( 'cardgate_prefix', '' ) );
-                $build = array();
-                $build['bank'] = array(
-                    '#type' => 'select',
-                    '#title' => t('Kies uw bank:'),
-                    '#default_value' => empty($_SESSION['bank']) ? '' :$_SESSION['bank'],
-                    '#options' => $cgp->getBankOptions());
-                return $build;
-                break;
-            case "settings":
-                return;
-                break;
-            case 'cart-process':
-                if (isset($form_state['values']['panes']['payment']['details']['bank'])) {
-                    $_SESSION['bank'] = $form_state['values']['panes']['payment']['details']['bank'];
-                    $order->data['bank'] = $form_state['values']['panes']['payment']['details']['bank'];
-                }
-                return TRUE;
-                break;
-        };
-    }
-}
-
 /**
  * The settings form
  */
 function uc_cardgate_settings_form() {
 
     global $base_url, $base_secure_url, $base_insecure_url;
-    
-    variable_set('cardgate_issuerrefresh', 0);
 
     foreach ( uc_cardgate_get_supported_languages() as $val ) {
         $options['language'][$val["code"]] = $val["descr"];
@@ -237,9 +202,6 @@ function uc_cardgate_settings_form() {
     $options['checkoutview']['logos'] = "Logo's";
 	$options['checkoutview']['text'] = 'Text';
     $options['checkoutview']['logosandtext'] = "Logo's and Text";
-
-    $options['issuers'][0] = 'Without issuers';
-    $options['issuers'][1] = 'With issuers';
 
     $cgp = new CARDGATE( variable_get( 'cardgate_site_id', '' ), variable_get( 'cardgate_prefix', '' ) );
 
@@ -284,14 +246,6 @@ function uc_cardgate_settings_form() {
         '#title' => 'Payment method description',
         '#default_value' => variable_get( 'cardgate_cardgate_info', 'You will be redirected to the CardGate page to complete the payment.' ),
         '#description' => t( 'The description of the payment method displayed to customers in checkout.' ),
-    );
-
-    $form['cardgate_show_issuers'] = array(
-        '#type' => 'select',
-        '#title' => 'Show issuers',
-        '#options' => $options['issuers'],
-        '#default_value' => variable_get( 'cardgate_show_issuers', 0 ),
-        '#description' => t( 'iDEAL v2 will not show issuers any more by default (Mandatory by iDEAL).' ),
     );
 
     $form['cardgate_checkoutview'] = array(

@@ -15,11 +15,10 @@
 
 class CARDGATE {
 
-    var $version = '7.0.14';
+    var $version = '7.0.15';
     protected $siteID = 0;
     protected $hashKey = "";
     protected $orderID = "";
-    protected $issuer = "";
     protected $country = "";
     protected $language = "";
     protected $currency = "";
@@ -330,9 +329,6 @@ class CARDGATE {
         $hash = md5( ($test == 'live' ? '' : 'TEST') . $this->siteID . $amount . $ref . $hashKey );
         $data['test'] = ($test == 'test' ? 1 : 0);
         $data['option'] = substr( $order->payment_method, 4 );
-        if ( boolval( variable_get( 'cardgate_show_issuers') ) == true ) {
-            $data['suboption'] = ( $data['option'] == 'ideal' ? $_SESSION['bank'] : '' );
-        }
         $data['siteid'] = $this->siteID;
         $data['currency'] = $order->currency;
         $data['amount'] = $amount;
@@ -359,49 +355,6 @@ class CARDGATE {
         }
         return $data;
     }
-
-    public function getBankOptions() {
-        
-        $this->checkBankOptions();
-        
-        $aIssuers = unserialize(variable_get('cardgate_issuers',[]));
-        $aIssuers[0] = 'Kies uw bank a.u.b.';
-        return $aIssuers;
-    }
-    
-    private function checkBankOptions() {
-        $iIssuerRefesh = variable_get( 'cardgate_issuerrefresh', false );
-        
-        if ($iIssuerRefesh) {
-            $iIssuerRefresh = (int) $iIssuerRefesh;
-            if ($iIssuerRefresh < time()) {
-                $this->cacheBankOptions();
-            }
-        } else {
-            $this->cacheBankOptions();
-        }
-    }
-    
-    private function cacheBankOptions() {
-        $iCacheTime = 24 * 60 * 60;
-        $iIssuerRefresh = time() + $iCacheTime;
-        variable_set('cardgate_issuerrefresh', $iIssuerRefresh);
-        
-        $test = variable_get( 'cardgate_mode', '' ) == 'test';
-        if($test){
-            $url = 'https://secure-staging.curopayments.net/cache/idealDirectoryCUROPayments.dat';
-        } else {
-            $url = 'https://secure.curopayments.net/cache/idealDirectoryCUROPayments.dat';
-        }
-        
-        if ( !ini_get( 'allow_url_fopen' ) || !function_exists( 'file_get_contents' ) ) {
-            $result = false;
-        } else {
-            $result = file_get_contents( $url );
-        }
-        variable_set('cardgate_issuers', $result);
-    }
-
 }
 ?>
 
