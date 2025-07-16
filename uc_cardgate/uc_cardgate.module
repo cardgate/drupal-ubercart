@@ -32,6 +32,7 @@ function uc_cardgate_getPaymentMethods() {
         array( "id" => "cgp_banktransfer", "name" => "Bank Transfer", "descr" => "Pay using Bank Transfer", "img" => "banktransfer.svg" ),
         array( "id" => "cgp_billink", "name" => "Billink", "descr" => "Pay using Billink", "img" => "billink.svg" ),
         array( "id" => "cgp_bitcoin", "name" => "Bitcoin", "descr" => "Pay using Bitcoin", "img" => "bitcoin.svg" ),
+        array( "id" => "cgp_crypto", "name" => "Crypto", "descr" => "Pay using Crypto", "img" => "crypto.svg" ),
         array( "id" => "cgp_creditcard", "name" => "CreditCard", "descr" => "Pay using CreditCard", "img" => "creditcard.svg"),
         array( "id" => "cgp_directdebit", "name" => "Direct Debit", "descr" => "Pay using Direct Debit", "img" => "directdebit.svg" ),
         array( "id" => "cgp_directebanking", "name" => "SofortBanking", "descr" => "Pay using SofortBanking", "img" => "sofortbanking.svg" ),
