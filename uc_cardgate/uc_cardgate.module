@@ -58,6 +58,23 @@ function uc_cardgate_getModuleFiles() {
     );
     return $files;
 }
+function uc_cardgate_checkPaymentCurrency($currency,$payment_method) {
+    $strictly_euro = in_array($payment_method,['cardgateideal',
+        'cardgateidealqr',
+        'cardgatebancontact',
+        'cardgatebanktransfer',
+        'cardgatebillink',
+        'cardgatesofortbanking',
+        'cardgatedirectdebit',
+        'cardgateonlineueberweisen',
+        'cardgatespraypay']);
+    if ($strictly_euro && $currency != 'EUR') return false;
+
+    $strictly_pln = in_array($payment_method,['cardgateprzelewy24']);
+    if ($strictly_pln && $currency != 'PLN') return false;
+
+    return true;
+}
 
 /**
  * Implementation of hook_payment_method
@@ -66,26 +83,30 @@ function uc_cardgate_uc_payment_method() {
     $i = -10;
     $checkoutview = variable_get('cardgate_checkoutview', 'text');
     
-    foreach ( uc_cardgate_getPaymentMethods() as $key => $val ) {
-        $val['id'] == 'cgp_cardgate' ? $callback = 'uc_payment_method_cardgate' : $callback = 'uc_payment_method_cardgate_sub';
+    foreach ( uc_cardgate_getPaymentMethods() as  $method) {
+        $method['id'] == 'cgp_cardgate' ? $callback = 'uc_payment_method_cardgate' : $callback = 'uc_payment_method_cardgate_sub';
 	
     	switch ($checkoutview){
     		case 'logos':
-    			$title = uc_cardgate_getImage($val['img']);
+    			$title = uc_cardgate_getImage($method['img']);
     		break;
     		case 'text':
-    			$title = t( $val["name"] );
+    			$title = t( $method["name"] );
     		break;
     		case 'logosandtext':
-    		 $title = uc_cardgate_getImage($val['img']) . variable_get( 'cardgate_' . $val["id"] . '_title', ' '.t( $val["name"] ) );
+    		 $title = uc_cardgate_getImage($method['img']) . variable_get( 'cardgate_' . $method["id"] . '_title', ' '.t( $method["name"] ) );
     		break;
     	}
 
+        $currency   = variable_get('uc_currency_code', 'USD');
+        $pm         = str_replace('cgp_','cardgate',$method['id']);
+        if (!uc_cardgate_checkPaymentCurrency($currency,$pm)) continue;
+
         $methods[] = array(
-            'id' => $val["id"],
-            'name' => t( $val["name"] ),
+            'id' => $method["id"],
+            'name' => t( $method["name"] ),
             'title' => $title,
-            'desc' => t( $val["descr"] ),
+            'desc' => t( $method["descr"] ),
             'redirect' => 'uc_cardgate_form',
             'callback' => $callback,
             'weight' => $i,
@@ -190,8 +211,8 @@ function uc_cardgate_settings_form() {
 
     global $base_url, $base_secure_url, $base_insecure_url;
 
-    foreach ( uc_cardgate_get_supported_languages() as $val ) {
-        $options['language'][$val["code"]] = $val["descr"];
+    foreach ( uc_cardgate_get_supported_languages() as $language ) {
+        $options['language'][$language["code"]] = $language["descr"];
     }
 
     $options['mode']['live'] = 'Live mode';
@@ -432,7 +453,6 @@ function uc_cardgate_failure() {
         }
     }
 }
-
 function uc_cardgate_response() {
    
     $cardgate = new CARDGATE( variable_get( 'cardgate_site_id', '' ), variable_get( 'cardgate_prefix', '' ) );
